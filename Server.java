@@ -1,12 +1,3 @@
-import java.security.Security;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,7 +19,7 @@ public class Server {
 	BigInteger[] serverParams;
 	//AttributeTuple attrs = new AttributeTuple();
 	BigInteger[] serverAttrs = new BigInteger[5];
-	public Server() throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
+	public Server() throws IOException {
 		if(OS.indexOf("win") >= 0) {
 			currAbsPath = Paths.get(".").toAbsolutePath().normalize().toString()+"\\src\\server\\";
 		}
@@ -74,7 +65,7 @@ public class Server {
 			System.out.println("Server parameter " + i + " is "+serverParams[i]);
 		}*/
 	}
-	public void connect(String username) {
+	/*public void connect(String username) {
 		Security.addProvider(new BouncyCastleProvider());
 		if(Security.getProvider("BC")==null) {
 			System.out.println("Bouncy Castle Provider is NOT available");
@@ -82,7 +73,7 @@ public class Server {
 		else {
 			System.out.println("Bouncy Castle provider is available");
 		}
-	}
+	}*/
 	public BigInteger getP() {
 		return serverParams[0];
 	}

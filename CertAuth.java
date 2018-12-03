@@ -8,15 +8,13 @@ import java.math.BigInteger;
 import java.util.Random;
 import java.util.Scanner;
 import java.nio.file.Paths;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
+
 
 public class CertAuth {
 	private static String OS = System.getProperty("os.name").toLowerCase();
     private static String currAbsPath;		
     Server server;
-	public CertAuth() throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
+	public CertAuth() throws IOException {
 		if(OS.indexOf("win") >= 0) {
 			currAbsPath = Paths.get(".").toAbsolutePath().normalize().toString()+"\\src\\senders\\";
 		}
@@ -70,7 +68,7 @@ public class CertAuth {
 		BigInteger[] result = new BigInteger[3];
 		result[0] = server.getRandomNum(server.getP(), r); // party key
 		result[1] = server.getRandomNum(server.getP(), r); // server key
-		result[2] = result[0].multiply(result[1]).mod(server.getP()); // K used for both sender and receiver's decode
+		result[2] = result[0].add(result[1]).mod(server.getP()); // K used for both sender and receiver's decode
 		return result;
 	}
 	public BigInteger senderLogin(String senderName) throws FileNotFoundException {

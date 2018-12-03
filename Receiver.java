@@ -1,13 +1,10 @@
 import java.io.IOException;
 import java.math.BigInteger;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.Random;
 
 
 public class Receiver {
-	public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
+	public static void main(String[] args) throws IOException {
 		CertAuth ca = new CertAuth();
 		ca.newReceiver("Bob","Alice");
 		Server server = ca.connectToServer();
